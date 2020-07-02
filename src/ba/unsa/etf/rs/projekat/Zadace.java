@@ -1,4 +1,4 @@
-package ba.unsa.etf.rs;
+package ba.unsa.etf.rs.projekat;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;

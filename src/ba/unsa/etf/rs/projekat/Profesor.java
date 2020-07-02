@@ -1,4 +1,4 @@
-package ba.unsa.etf.rs;
+package ba.unsa.etf.rs.projekat;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -6,23 +6,20 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
 
-public class Ucenik {
-    SimpleIntegerProperty id;
-    SimpleStringProperty ime,prezime,email,adresa,opcina,lozinka;
-    SimpleObjectProperty<LocalDate> datumRodjenja;
-    SimpleObjectProperty<Razred> razredId;
+public class Profesor {
 
-    public Ucenik(int id, String ime, String prezime, String email, String adresa, String opcina, String lozinka, LocalDate datumRodjenja, Razred razredId) {
+    SimpleIntegerProperty id;
+    SimpleStringProperty ime,prezime,email,lozinka;
+    SimpleObjectProperty<LocalDate> datumRodjenja,datumZaposlenja;
+
+    public Profesor(int id, String ime, String prezime, String email, String lozinka,LocalDate datumRodjenja, LocalDate datumZaposlenja) {
         this.id = new SimpleIntegerProperty(id);
         this.ime = new SimpleStringProperty(ime);
         this.prezime = new SimpleStringProperty(prezime);
         this.email = new SimpleStringProperty(email);
-        this.adresa = new SimpleStringProperty(adresa);
-        this.opcina = new SimpleStringProperty(opcina);
         this.lozinka = new SimpleStringProperty(lozinka);
         this.datumRodjenja = new SimpleObjectProperty<LocalDate>(datumRodjenja);
-        this.razredId = new SimpleObjectProperty<Razred>(razredId);
-
+        this.datumZaposlenja = new SimpleObjectProperty<LocalDate>(datumZaposlenja);
     }
 
     public int getId() {
@@ -73,30 +70,6 @@ public class Ucenik {
         this.email.set(email);
     }
 
-    public String getAdresa() {
-        return adresa.get();
-    }
-
-    public SimpleStringProperty adresaProperty() {
-        return adresa;
-    }
-
-    public void setAdresa(String adresa) {
-        this.adresa.set(adresa);
-    }
-
-    public String getOpcina() {
-        return opcina.get();
-    }
-
-    public SimpleStringProperty opcinaProperty() {
-        return opcina;
-    }
-
-    public void setOpcina(String opcina) {
-        this.opcina.set(opcina);
-    }
-
     public String getLozinka() {
         return lozinka.get();
     }
@@ -121,15 +94,15 @@ public class Ucenik {
         this.datumRodjenja.set(datumRodjenja);
     }
 
-    public Razred getRazredId() {
-        return razredId.get();
+    public LocalDate getDatumZaposlenja() {
+        return datumZaposlenja.get();
     }
 
-    public SimpleObjectProperty<Razred> razredIdProperty() {
-        return razredId;
+    public SimpleObjectProperty<LocalDate> datumZaposlenjaProperty() {
+        return datumZaposlenja;
     }
 
-    public void setRazredId(Razred razredId) {
-        this.razredId.set(razredId);
+    public void setDatumZaposlenja(LocalDate datumZaposlenja) {
+        this.datumZaposlenja.set(datumZaposlenja);
     }
 }
