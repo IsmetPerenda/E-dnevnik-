@@ -14,7 +14,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
         @Override
         public void start(Stage primaryStage) throws Exception{
 
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/pocetna.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/profesor.fxml"));
             primaryStage.setTitle("Studenti");
             primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             primaryStage.show();
