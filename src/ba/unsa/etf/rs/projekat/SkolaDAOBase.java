@@ -34,123 +34,124 @@ public class SkolaDAOBase implements SkolaDAO {
         }
     }
 
+
     @Override
-    public ObservableList<Ucenik> DajUcenike() {
+    public ObservableList<Student> getStudents() {
         return null;
     }
 
     @Override
-    public ObservableList<Profesor> DajProfesore() {
+    public ObservableList<Professor> getProfesors() {
         return null;
     }
 
     @Override
-    public ObservableList<Predmet> DajPredmet() {
+    public ObservableList<Subject> getSubject() {
         return null;
     }
 
     @Override
-    public ObservableList<Zadace> DajZadace() {
+    public ObservableList<Homework> getHomework() {
         return null;
     }
 
     @Override
-    public ObservableList<Razred> DajRazred() {
+    public ObservableList<ClassRoom> getClassroom() {
         return null;
     }
 
     @Override
-    public ObservableList<Bodovi> DajBodove() {
+    public ObservableList<Points> getPoints() {
         return null;
     }
 
     @Override
-    public void DodajUcenika(Ucenik ucenik) {
+    public void addStudents(Student student) {
 
     }
 
     @Override
-    public void IzmijeniUcenika(Ucenik ucenik) {
+    public void changeStudents(Student student) {
 
     }
 
     @Override
-    public void ObrisiUcenika(Ucenik ucenik) {
+    public void deleteStudents(Student student) {
 
     }
 
     @Override
-    public void DodajProfesora(Profesor profesor) {
+    public void addProfesor(Professor professor) {
 
     }
 
     @Override
-    public void IzmijeniProfesora(Profesor profesor) {
+    public void changeProfesor(Professor professor) {
 
     }
 
     @Override
-    public void ObrisiProfesora(Profesor profesor) {
+    public void deleteProfesor(Professor professor) {
 
     }
 
     @Override
-    public void DodajPredmet(Predmet predmet) {
+    public void addSubject(Subject subject) {
 
     }
 
     @Override
-    public void IzmijeniPredmet(Predmet predmet) {
+    public void changeSubject(Subject subject) {
 
     }
 
     @Override
-    public void ObrisiPredmet(Predmet predmet) {
+    public void deleteSubject(Subject subject) {
 
     }
 
     @Override
-    public void DodajZadacu(Zadace zadace) {
+    public void addHomework(Homework homework) {
 
     }
 
     @Override
-    public void IzmijeniZadacu(Zadace zadace) {
+    public void changeHomework(Homework homework) {
 
     }
 
     @Override
-    public void ObrisiZadacu(Zadace zadace) {
+    public void deleteHomework(Homework homework) {
 
     }
 
     @Override
-    public void DodajRazred(Razred razred) {
+    public void addClassroom(ClassRoom classRoom) {
 
     }
 
     @Override
-    public void IzmijeniRazred(Razred razred) {
+    public void changeClassroom(ClassRoom classRoom) {
 
     }
 
     @Override
-    public void ObrisiRazred(Razred razred) {
+    public void deleteClassroom(ClassRoom classRoom) {
 
     }
 
     @Override
-    public void DodajBodove(Bodovi bodovi) {
+    public void addPoints(Points points) {
 
     }
 
     @Override
-    public void IzmijeniBodove(Bodovi bodovi) {
+    public void changePoints(Points points) {
 
     }
 
     @Override
-    public void ObrisiBodove(Bodovi bodovi) {
+    public void deletePoints(Points points) {
 
     }
 

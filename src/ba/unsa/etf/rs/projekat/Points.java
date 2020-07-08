@@ -4,17 +4,17 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class Bodovi {
+public class Points {
     SimpleIntegerProperty id;
     SimpleDoubleProperty brojBodova;
-    SimpleObjectProperty<Ucenik> ucenikId;
-    SimpleObjectProperty<Zadace> zadacaId;
+    SimpleObjectProperty<Student> ucenikId;
+    SimpleObjectProperty<Homework> zadacaId;
 
-    public Bodovi(int id, double brojBodova, Ucenik ucenikId, Zadace zadacaId) {
+    public Points(int id, double brojBodova, Student studentId, Homework zadacaId) {
         this.id = new  SimpleIntegerProperty(id);
         this.brojBodova = new SimpleDoubleProperty(brojBodova);
-        this.ucenikId = new  SimpleObjectProperty<Ucenik> (ucenikId);;
-        this.zadacaId = new SimpleObjectProperty<Zadace>(zadacaId);
+        this.ucenikId = new  SimpleObjectProperty<Student> (studentId);;
+        this.zadacaId = new SimpleObjectProperty<Homework>(zadacaId);
     }
 
     public int getId() {
@@ -41,27 +41,27 @@ public class Bodovi {
         this.brojBodova.set(brojBodova);
     }
 
-    public Ucenik getUcenikId() {
+    public Student getUcenikId() {
         return ucenikId.get();
     }
 
-    public SimpleObjectProperty<Ucenik> ucenikIdProperty() {
+    public SimpleObjectProperty<Student> ucenikIdProperty() {
         return ucenikId;
     }
 
-    public void setUcenikId(Ucenik ucenikId) {
-        this.ucenikId.set(ucenikId);
+    public void setUcenikId(Student studentId) {
+        this.ucenikId.set(studentId);
     }
 
-    public Zadace getZadacaId() {
+    public Homework getZadacaId() {
         return zadacaId.get();
     }
 
-    public SimpleObjectProperty<Zadace> zadacaIdProperty() {
+    public SimpleObjectProperty<Homework> zadacaIdProperty() {
         return zadacaId;
     }
 
-    public void setZadacaId(Zadace zadacaId) {
+    public void setZadacaId(Homework zadacaId) {
         this.zadacaId.set(zadacaId);
     }
 }

@@ -4,12 +4,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Zadace {
+public class Homework {
     SimpleIntegerProperty id;
     SimpleStringProperty nazivZadace;
     SimpleObjectProperty<Predmet> predmetId;
 
-    public Zadace(int id, String nazivZadace, Predmet predmetId) {
+    public Homework(int id, String nazivZadace, Predmet predmetId) {
         this.id = new SimpleIntegerProperty(id);
         this.nazivZadace = new SimpleStringProperty(nazivZadace);
         this.predmetId = new SimpleObjectProperty<Predmet>(predmetId);
