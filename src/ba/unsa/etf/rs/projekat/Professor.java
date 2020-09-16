@@ -12,14 +12,14 @@ public class Professor {
     SimpleStringProperty name,surname,email,password;
     SimpleObjectProperty<LocalDate> dateOfBirth,dateOfStartWorking;
 
-    public Professor(int id, String name, String surname, String email, String password, LocalDate dateOfBirth, LocalDate dateOfStartWorking) {
+    public Professor(int id, String name, String surname, LocalDate dateOfBirth, LocalDate dateOfStartWorking, String email, String password) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
-        this.email = new SimpleStringProperty(email);
-        this.password = new SimpleStringProperty(password);
         this.dateOfBirth = new SimpleObjectProperty<LocalDate>(dateOfBirth);
         this.dateOfStartWorking = new SimpleObjectProperty<LocalDate>(dateOfStartWorking);
+        this.email = new SimpleStringProperty(email);
+        this.password = new SimpleStringProperty(password);
     }
 
     public int getId() {

@@ -12,7 +12,7 @@ public class Student {
     SimpleObjectProperty<LocalDate> dateOfBirth;
     SimpleObjectProperty<ClassRoom> classroomId;
 
-    public Student(int id, String name, String surname, String email, String adress, String municipality, String password, LocalDate dateOfBirth, ClassRoom classroomId) {
+    public Student(int id, String name, String surname, String adress, LocalDate dateOfBirth,  String municipality, String email,  String password, ClassRoom classroomId) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);

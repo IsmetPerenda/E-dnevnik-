@@ -12,12 +12,6 @@ public interface SkolaDAO {
     void addStudents(Student student);
     void changeStudents(Student student);
     void deleteStudents(Student student);
-    void addProfesor(Professor professor);
-    void changeProfesor(Professor professor);
-    void deleteProfesor(Professor professor);
-    void addSubject(Subject subject);
-    void changeSubject(Subject subject);
-    void deleteSubject(Subject subject);
     void addHomework(Homework homework);
     void changeHomework(Homework homework);
     void deleteHomework(Homework homework);

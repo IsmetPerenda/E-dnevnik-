@@ -6,14 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Subject {
 
-
-
-    public class Predmet {
         SimpleIntegerProperty id;
         SimpleStringProperty name;
         SimpleObjectProperty<Professor> profesorId;
 
-        public Predmet(int id, String name, Professor professorId) {
+        public Subject(int id, String name, Professor professorId) {
             this.id = new SimpleIntegerProperty(id);
             this.name = new SimpleStringProperty(name);
             this.profesorId = new SimpleObjectProperty<Professor>(professorId);
@@ -56,4 +53,4 @@ public class Subject {
         }
     }
 
-}
+

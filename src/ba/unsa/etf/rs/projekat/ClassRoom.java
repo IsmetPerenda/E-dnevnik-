@@ -8,16 +8,30 @@ public class ClassRoom {
 
 
 
-        SimpleIntegerProperty id,numberOfStudents;
+        SimpleIntegerProperty id,numberOfStudents,year;
         SimpleStringProperty name;
 
-        public ClassRoom(int id, int numberOfStudents, String name) {
+
+        public ClassRoom(int id, int numberOfStudents, String name,int year) {
             this.id = new SimpleIntegerProperty(id);
             this.numberOfStudents = new SimpleIntegerProperty(numberOfStudents);
             this.name = new SimpleStringProperty(name);
+            this.year = new SimpleIntegerProperty(year);
         }
 
-        public int getId() {
+    public int getYear() {
+        return year.get();
+    }
+
+    public SimpleIntegerProperty yearProperty() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year.set(year);
+    }
+
+    public int getId() {
             return id.get();
         }
 

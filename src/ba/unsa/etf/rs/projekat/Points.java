@@ -6,15 +6,16 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Points {
     SimpleIntegerProperty id;
-    SimpleDoubleProperty brojBodova;
-    SimpleObjectProperty<Student> ucenikId;
-    SimpleObjectProperty<Homework> zadacaId;
+    SimpleDoubleProperty numberOfPoints;
+    SimpleObjectProperty<Student> studetntId;
+    SimpleObjectProperty<Homework> homeworkId;
 
-    public Points(int id, double brojBodova, Student studentId, Homework zadacaId) {
-        this.id = new  SimpleIntegerProperty(id);
-        this.brojBodova = new SimpleDoubleProperty(brojBodova);
-        this.ucenikId = new  SimpleObjectProperty<Student> (studentId);;
-        this.zadacaId = new SimpleObjectProperty<Homework>(zadacaId);
+    public Points(int id, double numberOfPoints, Student studentId, Homework homeworkId) {
+        this.id = new SimpleIntegerProperty(id);
+        this.numberOfPoints = new SimpleDoubleProperty(numberOfPoints);
+        this.studetntId = new SimpleObjectProperty<Student>(studentId);
+        ;
+        this.homeworkId = new SimpleObjectProperty<Homework>(homeworkId);
     }
 
     public int getId() {
@@ -29,39 +30,39 @@ public class Points {
         this.id.set(id);
     }
 
-    public double getBrojBodova() {
-        return brojBodova.get();
+    public double getNumberOfPoints() {
+        return numberOfPoints.get();
     }
 
-    public SimpleDoubleProperty brojBodovaProperty() {
-        return brojBodova;
+    public SimpleDoubleProperty numberOfPointsProperty() {
+        return numberOfPoints;
     }
 
-    public void setBrojBodova(double brojBodova) {
-        this.brojBodova.set(brojBodova);
+    public void setNumberOfPoints(double numberOfPoints) {
+        this.numberOfPoints.set(numberOfPoints);
     }
 
-    public Student getUcenikId() {
-        return ucenikId.get();
+    public Student getStudetntId() {
+        return studetntId.get();
     }
 
-    public SimpleObjectProperty<Student> ucenikIdProperty() {
-        return ucenikId;
+    public SimpleObjectProperty<Student> studetntIdProperty() {
+        return studetntId;
     }
 
-    public void setUcenikId(Student studentId) {
-        this.ucenikId.set(studentId);
+    public void setStudetntId(Student studetntId) {
+        this.studetntId.set(studetntId);
     }
 
-    public Homework getZadacaId() {
-        return zadacaId.get();
+    public Homework getHomeworkId() {
+        return homeworkId.get();
     }
 
-    public SimpleObjectProperty<Homework> zadacaIdProperty() {
-        return zadacaId;
+    public SimpleObjectProperty<Homework> homeworkIdProperty() {
+        return homeworkId;
     }
 
-    public void setZadacaId(Homework zadacaId) {
-        this.zadacaId.set(zadacaId);
+    public void setHomeworkId(Homework homeworkId) {
+        this.homeworkId.set(homeworkId);
     }
 }
