@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public class SkolaDAOBase implements SkolaDAO {
     private Connection connection;
 
-    private PreparedStatement dajAdmina,dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,odrediRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove;
+    private PreparedStatement dajAdmina,dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,odrediRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove,razrediUpit;
 
     public SkolaDAOBase() {
         try {
@@ -17,7 +17,7 @@ public class SkolaDAOBase implements SkolaDAO {
             dajUcenika = connection.prepareStatement("select * from Ucenik order by prezime");
             dajProfesora = connection.prepareStatement("select * from Profesor order by prezime");
             dajPredmet = connection.prepareStatement("select * from Predmeti order by id");
-            dajRazred = connection.prepareStatement("select * from Razred order by naziv ");
+            dajRazred = connection.prepareStatement("select * from Razred order by godina ");
             dajZadacu = connection.prepareStatement("select * from Zadace order by id ");
             dajBodove = connection.prepareStatement("select * from Bodovi order by id ");
             dajAdmina = connection.prepareStatement("select * from Administrator order by id");
@@ -34,6 +34,10 @@ public class SkolaDAOBase implements SkolaDAO {
             izmijeniZadacu = connection.prepareStatement("update Zadace set naziv_zadace=?,predmet_id=?,bodovi=? where id=?");
             izmijeniRazred = connection.prepareStatement("update Razred set godina=?,naziv=?,broj_ucenika=? where id=?");
             izmijeniBodove = connection.prepareStatement("update Bodovi set ucenik_id=?,broj_bodova=?,zadaca_id=? where id=?");
+
+            razrediUpit = connection.prepareStatement("select * from Razred where broj_ucenika  < 30");
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -200,6 +204,23 @@ public class SkolaDAOBase implements SkolaDAO {
         return admin;
     }
 
+    @Override
+    public ObservableList<ClassRoom> getFreeClassRoom()
+    {             ObservableList<ClassRoom> classrooms = FXCollections.observableArrayList();
+        try {
+            ResultSet x = razrediUpit.executeQuery();
+            while (x.next()) {
+                ClassRoom k = new ClassRoom(x.getInt(1), x.getInt(2), x.getString(3),x.getInt(4));
+                classrooms.add(k);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classrooms;
+    }
+
 
 
     @Override
@@ -311,9 +332,27 @@ public class SkolaDAOBase implements SkolaDAO {
 
     @Override
     public void changeClassroom(ClassRoom classRoom) {
+        try {
 
+            izmijeniRazred.setInt(1,classRoom.getYear());
+            izmijeniRazred.setString(2,classRoom.getName());
+            izmijeniRazred.setInt(3,classRoom.getNumberOfStudents());
+            izmijeniRazred.setInt(4,classRoom.getId());
+            izmijeniRazred.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+    public void deleteStudentsFromClassroom(ClassRoom classRoom){
 
+        try {
+            PreparedStatement deleteStudentsStatemant = connection.prepareStatement("delete from Ucenik where razred_id= ?");
+            deleteStudentsStatemant.setInt(1,classRoom.getId());
+            deleteStudentsStatemant.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void deleteClassroom(ClassRoom classRoom) {
         PreparedStatement deleteClassRoomStatemant= null;

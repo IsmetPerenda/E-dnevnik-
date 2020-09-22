@@ -37,9 +37,18 @@ public class classRoomController implements Initializable {
         }
 
         if(!validno)return;
-        razred = new ClassRoom(1,(int)spinnerGodina.getValue(),fldNaziv.getText(),(int)spinnerBrojUcenika.getValue());
+        if(razred == null) {
+            razred = new ClassRoom(1, (int) spinnerGodina.getValue(), fldNaziv.getText(), (int) spinnerBrojUcenika.getValue());
+        }else{
+            razred = new ClassRoom(razred.getId(), (int) spinnerGodina.getValue(), fldNaziv.getText(), (int) spinnerBrojUcenika.getValue());
+        }
         Stage edit_add=(Stage)btnSpasi.getScene().getWindow();
         edit_add.close();
+
+    }
+
+    public static ClassRoom getRazred() {
+        return razred;
     }
 
     @Override
@@ -48,5 +57,11 @@ public class classRoomController implements Initializable {
         this.spinnerBrojUcenika.setValueFactory(brUcenika);
         SpinnerValueFactory<Integer> godina= new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 9,1,1);
         this.spinnerGodina.setValueFactory(godina);
+        if(razred != null){
+            fldNaziv.setText(razred.getName());
+            spinnerBrojUcenika.getValueFactory().setValue(razred.getNumberOfStudents());
+            spinnerGodina.getValueFactory().setValue(razred.getYear());
+        }
+
     }
 }

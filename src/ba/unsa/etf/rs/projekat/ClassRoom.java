@@ -21,7 +21,7 @@ public class ClassRoom {
 
     @Override
     public String toString() {
-        return  getName()+" - "+ getYear();
+        return  getName();
     }
 
     public int getYear() {
