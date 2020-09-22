@@ -9,8 +9,9 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="45.60001602172852" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="343.99998397827153" minHeight="10.0" prefHeight="343.99998397827153" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="308.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="343.99998397827153" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ChoiceBox fx:id="cbUcenik" prefWidth="150.0">
@@ -29,5 +30,15 @@
           <TableColumn fx:id="cellBodovi" prefWidth="193.0" text="Bodovi" />
         </columns>
       </TableView>
+      <Button fx:id="btnPromjeniLozinku" onAction="#actionPromjeniLozinku" mnemonicParsing="false" text="Promjeni lozinku" GridPane.rowIndex="2" stylesheets="/css/dugmad.css">
+         <GridPane.margin>
+            <Insets left="160.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="btnOdjaviSe" onAction="#actionOdjaviSe" mnemonicParsing="false" text="Odjavi se!" GridPane.rowIndex="2" stylesheets="/css/dugmad.css">
+         <GridPane.margin>
+            <Insets left="290.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

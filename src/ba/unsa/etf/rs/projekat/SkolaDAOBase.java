@@ -9,14 +9,13 @@ import javafx.collections.ObservableList;
 public class SkolaDAOBase implements SkolaDAO {
     private Connection connection;
 
-    private PreparedStatement dajAdmina,dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,odrediRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove,razrediUpit;
-
+    private PreparedStatement selektujUcenikeIzRazreda,selektujUcenikeNaPredmetu,dajAdmina,dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,odrediRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove,razrediUpit,dajLozinkuUcenik,dajLozinkuProfesor,dajLozinkuAdministrator,dajRasporedUpit,dajStudentaNaPredmetuUpit;
     public SkolaDAOBase() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:Skola.db");
             dajUcenika = connection.prepareStatement("select * from Ucenik order by prezime");
             dajProfesora = connection.prepareStatement("select * from Profesor order by prezime");
-            dajPredmet = connection.prepareStatement("select * from Predmeti order by id");
+            dajPredmet = connection.prepareStatement("select * from Predmeti where profesor_id = ? order by id");
             dajRazred = connection.prepareStatement("select * from Razred order by godina ");
             dajZadacu = connection.prepareStatement("select * from Zadace order by id ");
             dajBodove = connection.prepareStatement("select * from Bodovi order by id ");
@@ -36,8 +35,13 @@ public class SkolaDAOBase implements SkolaDAO {
             izmijeniBodove = connection.prepareStatement("update Bodovi set ucenik_id=?,broj_bodova=?,zadaca_id=? where id=?");
 
             razrediUpit = connection.prepareStatement("select * from Razred where broj_ucenika  < 30");
+            dajLozinkuUcenik = connection.prepareStatement("update Ucenik set lozinka=? where id=?");
+            dajLozinkuAdministrator = connection.prepareStatement("update Administrator set lozinka=? where id=?");
+            dajLozinkuProfesor = connection.prepareStatement("update Profesor set lozinka=? where id=?");
 
-
+            dajRasporedUpit = connection.prepareStatement("select  * from Raspored");
+            dajStudentaNaPredmetuUpit = connection.prepareStatement("select s.id,s.prezime,s.adresa,s.datum_rodjenja,s.opcina,s.email,s.lozinka,s.razred_id from Ucenik s,Raspored r,Predmeti p where s.id = r.ucenik_id and r.predmet_id = p.id and p.profesor_id=?");
+selektujUcenikeIzRazreda=connection.prepareStatement("select * from ucenik where razred_id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,9 +124,10 @@ public class SkolaDAOBase implements SkolaDAO {
     }
 
     @Override
-    public ObservableList<Subject> getSubject() {
+    public ObservableList<Subject> getSubject(Professor professor) {
         ObservableList<Subject> subjects = FXCollections.observableArrayList();
         try {
+            dajPredmet.setInt(1,professor.getId());
             ResultSet x = dajPredmet.executeQuery();
             while (x.next()) {
                 Subject k = new Subject(x.getInt(1), x.getString(2), pretraziProfesora(x.getInt(3)) );
@@ -221,6 +226,42 @@ public class SkolaDAOBase implements SkolaDAO {
         return classrooms;
     }
 
+    @Override
+    public ObservableList<Schedule> getSchedule() {
+        ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+        try {
+            ResultSet x = dajRasporedUpit.executeQuery();
+            while (x.next()) {
+                Schedule k = new Schedule(x.getInt(1), pretraziUcenika(x.getInt(2)), pretraziPredmet(x.getInt(3)));
+                schedules.add(k);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return schedules;
+    }
+
+    @Override
+    public ObservableList<Student> getStudentsInSubjects(Professor professor) {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+        try {
+            dajStudentaNaPredmetuUpit.setInt(1,professor.getId());
+                ResultSet x = dajStudentaNaPredmetuUpit.executeQuery();
+                while (x.next()) {
+                    Student k = new Student(x.getInt(1), x.getString(2), x.getString(3), x.getString(4),x.getDate(5).toLocalDate(), x.getString(6), x.getString(7), x.getString(8), pretraziRazred(x.getInt(9)));
+                    students.add(k);
+
+                }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return students;
+    }
 
 
     @Override
@@ -251,6 +292,22 @@ public class SkolaDAOBase implements SkolaDAO {
 
     @Override
     public void changeStudents(Student student) {
+        try {
+
+            izmijeniUcenika.setString(1,student.getName());
+            izmijeniUcenika.setString(2,student.getSurname());
+            izmijeniUcenika.setString(3,student.getAdress());
+            izmijeniUcenika.setDate(4, Date.valueOf(student.getDateOfBirth()));
+            izmijeniUcenika.setString(5,student.getMunicipality());
+            izmijeniUcenika.setString(6,student.getEmail());
+            izmijeniUcenika.setString(7,student.getPassword());
+            izmijeniUcenika.setInt(8,student.getClassroomId().getId());
+            izmijeniUcenika.setInt(9,student.getId());
+            izmijeniUcenika.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -394,5 +451,42 @@ public class SkolaDAOBase implements SkolaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void changePassword(Student novi) {
+        try {
+            dajLozinkuUcenik.setString(1,novi.getPassword());
+            dajLozinkuUcenik.setInt(2,novi.getId());
+            dajLozinkuUcenik.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Override
+    public void changePassword(Professor novi) {
+        try {
+            dajLozinkuProfesor.setString(1,novi.getPassword());
+            dajLozinkuProfesor.setInt(2,novi.getId());
+            dajLozinkuProfesor.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Override
+    public void changePassword(Administrator novi) {
+        try {
+            dajLozinkuAdministrator.setString(1,novi.getPassword());
+            dajLozinkuAdministrator.setInt(2,novi.getId());
+            dajLozinkuAdministrator.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

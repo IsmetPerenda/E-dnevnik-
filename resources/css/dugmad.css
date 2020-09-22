@@ -1,0 +1,19 @@
+#btnObrisiRazred,#btnObrisiUcenika{
+    -fx-graphic: url("/img/delete.png");
+}
+#btnDodajUcenika,#buttonDodajRazred{
+    -fx-graphic: url("/img/add.png");
+}
+#btnIzmijeniRazred,#btnIzmijeniUcenika,#buttonDodajZadacu{
+    -fx-graphic: url("/img/edit.png");
+}
+#btngenerisi{
+    -fx-graphic: url("/img/hydro-power.png");
+}#btnPromjeniLozinku
+ {
+    -fx-graphic: url("/img/key.png");
+}
+#btnOdjaviSe
+{
+    -fx-graphic: url("/img/logout.png");
+}

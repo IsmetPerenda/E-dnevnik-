@@ -25,12 +25,14 @@ public class homescreenController {
     public PasswordField textfldPassword;
     SkolaDAO dao = new SkolaDAOBase();
 
-
+    public homescreenController() {
+    }
+    ObservableList<Professor> profesori = dao.getProfesors();
+    ObservableList<Student> student = dao.getStudents();
+    ObservableList<Administrator> admin = dao.getAdmin();
     public void PrijaviSe(ActionEvent actionEvent) throws IOException {
 
-        ObservableList<Professor> profesori = dao.getProfesors();
-        ObservableList<Student> student = dao.getStudents();
-        ObservableList<Administrator> admin = dao.getAdmin();
+
         boolean uspjesnoProfesor = false;
         boolean uspjesnoStudent = false;
         boolean uspjesnoAdmin = false;
@@ -52,11 +54,15 @@ public class homescreenController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profesor.fxml"));
             loader.setController(cont);
             Parent root = loader.load();
-            stage.setTitle("Profesor");
+            stage.setTitle("Profesor "+ k.getName()+ " " + k.getSurname());
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
             Stage edit_add= (Stage)buttonLogin.getScene().getWindow();
             edit_add.close();
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setContentText("Prijavili ste se kao profesor!");
+            info.setTitle("Dobro došli" + k.getName()+ " " + k.getSurname());
+            info.show();
 
         }else if(uspjesnoStudent == true) {
             Stage stage = new Stage();
@@ -64,11 +70,15 @@ public class homescreenController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ucenik.fxml"));
             loader.setController(cont);
             Parent root = loader.load();
-            stage.setTitle("Ucenik");
+            stage.setTitle("Ucenik "+x.getName()+" "+x.getSurname());
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
             Stage edit_add = (Stage) buttonLogin.getScene().getWindow();
             edit_add.close();
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setContentText("Prijavili ste se kao učenik!");
+            info.setTitle("Dobro došli" + x.getName()+ " " + x.getSurname());
+            info.show();
         }else if(uspjesnoAdmin == true){
             Stage stage = new Stage();
             administratorController cont = new administratorController(a);
@@ -80,6 +90,10 @@ public class homescreenController {
             stage.show();
             Stage edit_add = (Stage) buttonLogin.getScene().getWindow();
             edit_add.close();
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setContentText("Prijavili ste se kao administrator!");
+            info.setTitle("Dobro došli u studentsku službu!");
+            info.show();
         }
         else{
             Alert error = new Alert(Alert.AlertType.ERROR);

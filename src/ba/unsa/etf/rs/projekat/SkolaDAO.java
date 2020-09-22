@@ -1,16 +1,19 @@
 package ba.unsa.etf.rs.projekat;
 
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 
 public interface SkolaDAO {
     ObservableList<Student> getStudents();
     ObservableList<Professor> getProfesors();
-    ObservableList<Subject> getSubject();
+    ObservableList<Subject> getSubject(Professor professor);
     ObservableList<Homework> getHomework();
     ObservableList<ClassRoom> getClassroom();
     ObservableList<Points> getPoints();
     ObservableList<Administrator>getAdmin();
     ObservableList<ClassRoom>getFreeClassRoom();
+    ObservableList<Schedule>getSchedule();
+    ObservableList<Student>getStudentsInSubjects(Professor professor);
     void addStudents(Student student);
     void changeStudents(Student student);
     void deleteStudents(Student student);
@@ -26,4 +29,10 @@ public interface SkolaDAO {
     void deletePoints(Points points);
 
     void close();
+
+    void changePassword(Student novi);
+
+    void changePassword(Professor novi);
+
+    void changePassword(Administrator novi);
 }
