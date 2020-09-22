@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public class SkolaDAOBase implements SkolaDAO {
     private Connection connection;
 
-    private PreparedStatement dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove;
+    private PreparedStatement dajAdmina,dajUcenika,dajProfesora,dajPredmet,dajZadacu,dajRazred,dajBodove,dodajUcenika,odrediUcenika,dodajProfesora,dodajPredmet,dodajZadacu,odrediZadacu,dodajRazred,odrediRazred,dodajBodove,izmijeniUcenika,izmijeniProfesora,izmijeniPredmet,izmijeniZadacu,izmijeniRazred,izmijeniBodove;
 
     public SkolaDAOBase() {
         try {
@@ -20,16 +20,18 @@ public class SkolaDAOBase implements SkolaDAO {
             dajRazred = connection.prepareStatement("select * from Razred order by naziv ");
             dajZadacu = connection.prepareStatement("select * from Zadace order by id ");
             dajBodove = connection.prepareStatement("select * from Bodovi order by id ");
+            dajAdmina = connection.prepareStatement("select * from Administrator order by id");
 
             dodajUcenika = connection.prepareStatement("insert into Ucenik values (?,?,?,?,?,?,?,?,?)");
             odrediUcenika = connection.prepareStatement("SELECT MAX(id)+1 FROM Ucenik");
-            dodajZadacu = connection.prepareStatement("insert  into Zadace values (?,?,?,?,?)");
+            dodajZadacu = connection.prepareStatement("insert  into Zadace values (?,?,?,?)");
             odrediZadacu = connection.prepareStatement("SELECT MAX(id)+1 FROM Zadace");
             dodajBodove = connection.prepareStatement("insert  into Bodovi values (?,?,?,?)");
             dodajRazred = connection.prepareStatement("insert  into Razred values (?,?,?,?)");
+            odrediRazred = connection.prepareStatement("SELECT MAX(id)+1 FROM Razred");
 
             izmijeniUcenika = connection.prepareStatement("update Ucenik set  ime=?,prezime=?,adresa=?,datum_rodjenja=?,opcina=?,email=?,lozinka=?,razred_id=?  where id = ?");
-            izmijeniZadacu = connection.prepareStatement("update Zadace set naziv_zadace=?,predmet_id=?,bodovi=?,status=? where id=?");
+            izmijeniZadacu = connection.prepareStatement("update Zadace set naziv_zadace=?,predmet_id=?,bodovi=? where id=?");
             izmijeniRazred = connection.prepareStatement("update Razred set godina=?,naziv=?,broj_ucenika=? where id=?");
             izmijeniBodove = connection.prepareStatement("update Bodovi set ucenik_id=?,broj_bodova=?,zadaca_id=? where id=?");
 
@@ -76,7 +78,7 @@ public class SkolaDAOBase implements SkolaDAO {
         pretraga.setInt(1,id);
         ResultSet x = pretraga.executeQuery();
         if(!x.next())return null;
-        return new Homework(x.getInt(1), x.getString(2), pretraziPredmet(x.getInt(3)),x.getDouble(4),x.getString(5));
+        return new Homework(x.getInt(1), x.getString(2), pretraziPredmet(x.getInt(3)),x.getDouble(4));
 
     }
     @Override
@@ -136,7 +138,7 @@ public class SkolaDAOBase implements SkolaDAO {
         try {
             ResultSet x = dajZadacu.executeQuery();
             while (x.next()) {
-                Homework k = new Homework(x.getInt(1), x.getString(2), pretraziPredmet(x.getInt(3)),x.getDouble(4),x.getString(5));
+                Homework k = new Homework(x.getInt(1), x.getString(2), pretraziPredmet(x.getInt(3)),x.getDouble(4));
                 homeworks.add(k);
 
             }
@@ -181,6 +183,23 @@ public class SkolaDAOBase implements SkolaDAO {
         return points;
     }
 
+    @Override
+    public ObservableList<Administrator> getAdmin() {
+        ObservableList<Administrator> admin = FXCollections.observableArrayList();
+        try {
+            ResultSet x = dajAdmina.executeQuery();
+            while (x.next()) {
+                Administrator k = new Administrator(x.getInt(1), x.getString(2),x.getString(3) );
+                admin.add(k);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return admin;
+    }
+
 
 
     @Override
@@ -202,7 +221,7 @@ public class SkolaDAOBase implements SkolaDAO {
             dodajUcenika.setString(7, student.getEmail());
             dodajUcenika.setString(8, student.getPassword());
             dodajUcenika.setInt(9, student.getClassroomId().getId());
-            dodajUcenika.executeUpdate();
+            dodajUcenika.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -246,8 +265,7 @@ public class SkolaDAOBase implements SkolaDAO {
             dodajZadacu.setString(2, homework.getNameOfHomework());
             dodajZadacu.setInt(3, homework.getPredmetId().getId());
             dodajZadacu.setDouble(4, homework.getPoints());
-            dodajZadacu.setString(5, homework.getState());
-            dodajUcenika.executeUpdate();
+            dodajZadacu.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -273,7 +291,22 @@ public class SkolaDAOBase implements SkolaDAO {
 
     @Override
     public void addClassroom(ClassRoom classRoom) {
+        try {
+            ResultSet rs = odrediRazred.executeQuery();
+            int id = 1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+            dodajRazred.setInt(1, id);
+            dodajRazred.setInt(2, classRoom.getYear());
+            dodajRazred.setString(3,classRoom.getName());
+            dodajRazred.setInt(4, classRoom.getNumberOfStudents());
 
+            dodajRazred.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -317,6 +350,10 @@ public class SkolaDAOBase implements SkolaDAO {
 
     @Override
     public void close() {
-
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -16,7 +16,12 @@ public class Subject {
             this.profesorId = new SimpleObjectProperty<Professor>(professorId);
         }
 
-        public int getId() {
+    @Override
+    public String toString() {
+        return getNaziv();
+    }
+
+    public int getId() {
             return id.get();
         }
 

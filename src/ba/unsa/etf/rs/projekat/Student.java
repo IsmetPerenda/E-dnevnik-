@@ -12,7 +12,12 @@ public class Student {
     SimpleObjectProperty<LocalDate> dateOfBirth;
     SimpleObjectProperty<ClassRoom> classroomId;
 
-    public Student(int id, String name, String surname, String adress, LocalDate dateOfBirth,  String municipality, String email,  String password, ClassRoom classroomId) {
+    @Override
+    public String toString() {
+        return getName() + " "+ getSurname();
+    }
+
+    public Student(int id, String name, String surname, String adress, LocalDate dateOfBirth, String municipality, String email, String password, ClassRoom classroomId) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);

@@ -10,14 +10,14 @@ public class Homework {
     SimpleStringProperty nameOfHomework;
     SimpleObjectProperty<Subject> predmetId;
     SimpleDoubleProperty points;
-    SimpleStringProperty state;
 
-    public Homework(int id, String nameOfHomework, Subject predmetId, double points,String state) {
+
+    public Homework(int id, String nameOfHomework, Subject predmetId, double points) {
         this.id = new SimpleIntegerProperty(id);
         this.nameOfHomework = new SimpleStringProperty(nameOfHomework);
         this.predmetId = new SimpleObjectProperty<Subject>(predmetId);
         this.points = new SimpleDoubleProperty(points);
-        this.state = new SimpleStringProperty(state);
+
     }
 
     public int getId() {
@@ -68,15 +68,4 @@ public class Homework {
         this.points.set(points);
     }
 
-    public String getState() {
-        return state.get();
-    }
-
-    public SimpleStringProperty stateProperty() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state.set(state);
-    }
 }

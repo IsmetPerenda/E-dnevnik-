@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <VBox prefHeight="36.0" prefWidth="808.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </VBox>
+    </top>
+    <right>
+        <VBox prefHeight="374.0" prefWidth="170.0" spacing="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="listViewAdmin2" prefHeight="353.0" prefWidth="170.0">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </ListView>
+         </children></VBox>
+    </right>
+    <bottom>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <GridPane hgap="20.0" prefHeight="100.0" prefWidth="473.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+               <children>
+                      <Button fx:id="buttonDodajRazred" mnemonicParsing="false" onAction="#actionDodajRazred" prefHeight="25.0" prefWidth="98.0" text="Dodaj razred" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Dodaj Učenika" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+                </GridPane>
+            </children>
+        </HBox>
+    </bottom>
+   <center>
+            <GridPane hgap="10.0" prefHeight="420.0" prefWidth="603.0" vgap="20.0" BorderPane.alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="161.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="161.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                    <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="2.0" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="2.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label text="Ime:" GridPane.columnIndex="1">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="10.0" />
+                        </GridPane.margin>
+                    </Label>
+                    <Label text="Prezime:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="10.0" />
+                        </GridPane.margin>
+                    </Label>
+                    <Label text="Email:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="10.0" />
+                        </GridPane.margin>
+                    </Label>
+                    <Label text="Adresa:" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="10.0" />
+                        </GridPane.margin>
+                    </Label>
+                    <Label text="Opcina:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="10.0" />
+                        </GridPane.margin>
+                    </Label>
+                    <TextField GridPane.columnIndex="2" />
+                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                    <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <Label prefHeight="35.0" prefWidth="167.0" text="Datum rođenja:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+                    </Label>
+            <ListView fx:id="listViewAdmin" prefHeight="210.0" prefWidth="217.0" GridPane.rowSpan="7" />
+                </children>
+            </GridPane>
+   </center>
+</BorderPane>

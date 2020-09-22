@@ -30,15 +30,21 @@ public class homescreenController {
 
         ObservableList<Professor> profesori = dao.getProfesors();
         ObservableList<Student> student = dao.getStudents();
+        ObservableList<Administrator> admin = dao.getAdmin();
         boolean uspjesnoProfesor = false;
         boolean uspjesnoStudent = false;
+        boolean uspjesnoAdmin = false;
         Professor k = null;
         Student x = null;
+        Administrator a = null;
         for(int i = 0; i<profesori.size();i++){
             if(profesori.get(i).getEmail().equals(textfldEmail.getText()) && profesori.get(i).getPassword().equals(textfldPassword.getText())){k = profesori.get(i);uspjesnoProfesor = true;break;}
         }
         for(int i = 0; i<student.size();i++){
-            if(student.get(i).getEmail().equals(textfldEmail.getText()) && student.get(i).getPassword().equals(textfldPassword.getText())){ x= student.get(i);uspjesnoStudent = true;break;}
+            if(student.get(i).getEmail().equals(textfldEmail.getText()) && student.get(i).getPassword().equals(textfldPassword.getText())){ x = student.get(i);uspjesnoStudent = true;break;}
+        }
+        for(int i = 0; i<admin.size();i++){
+            if(admin.get(i).getEmail().equals(textfldEmail.getText()) && admin.get(i).getPassword().equals(textfldPassword.getText())){ a = admin.get(i);uspjesnoAdmin = true;break;}
         }
         if(uspjesnoProfesor == true){
             Stage stage=new Stage();
@@ -52,16 +58,27 @@ public class homescreenController {
             Stage edit_add= (Stage)buttonLogin.getScene().getWindow();
             edit_add.close();
 
-        }else if(uspjesnoStudent == true){
-            Stage stage=new Stage();
-            studentController cont=new studentController(x);
+        }else if(uspjesnoStudent == true) {
+            Stage stage = new Stage();
+            studentController cont = new studentController(x);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ucenik.fxml"));
             loader.setController(cont);
             Parent root = loader.load();
             stage.setTitle("Ucenik");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
-            Stage edit_add= (Stage)buttonLogin.getScene().getWindow();
+            Stage edit_add = (Stage) buttonLogin.getScene().getWindow();
+            edit_add.close();
+        }else if(uspjesnoAdmin == true){
+            Stage stage = new Stage();
+            administratorController cont = new administratorController(a);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/administrator.fxml"));
+            loader.setController(cont);
+            Parent root = loader.load();
+            stage.setTitle("Administrator");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.show();
+            Stage edit_add = (Stage) buttonLogin.getScene().getWindow();
             edit_add.close();
         }
         else{
@@ -70,5 +87,7 @@ public class homescreenController {
             error.setTitle("Greška u Login-u!");
             error.show();
         }
+        dao.close();
     }
+
 }

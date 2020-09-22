@@ -9,6 +9,7 @@ public interface SkolaDAO {
     ObservableList<Homework> getHomework();
     ObservableList<ClassRoom> getClassroom();
     ObservableList<Points> getPoints();
+    ObservableList<Administrator>getAdmin();
     void addStudents(Student student);
     void changeStudents(Student student);
     void deleteStudents(Student student);

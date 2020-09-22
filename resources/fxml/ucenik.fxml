@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane fx:id="cbPredmet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="45.60001602172852" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="343.99998397827153" minHeight="10.0" prefHeight="343.99998397827153" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane prefHeight="75.0" prefWidth="244.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
+      <ChoiceBox fx:id="cbUcenik" prefWidth="150.0">
+         <GridPane.margin>
+            <Insets left="200.0" />
+         </GridPane.margin>
+      </ChoiceBox>
+      <Label prefHeight="18.0" prefWidth="103.0" text="Izaberi predme:">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <TableView fx:id="tbViewUcenik" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn prefWidth="198.0" text="Zadaća" />
+          <TableColumn prefWidth="193.0" text="Bodovi" />
+        </columns>
+      </TableView>
    </children>
 </GridPane>

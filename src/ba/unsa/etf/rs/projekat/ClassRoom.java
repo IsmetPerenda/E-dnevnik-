@@ -19,6 +19,11 @@ public class ClassRoom {
             this.year = new SimpleIntegerProperty(year);
         }
 
+    @Override
+    public String toString() {
+        return  getName()+" - "+ getYear();
+    }
+
     public int getYear() {
         return year.get();
     }

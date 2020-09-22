@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
    <top>
       <VBox prefHeight="36.0" prefWidth="808.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,17 +24,8 @@
    <right>
       <VBox prefHeight="420.0" prefWidth="138.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Dodaj razred">
-               <VBox.margin>
-                  <Insets left="25.0" top="50.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Dodaj ucenika">
-               <VBox.margin>
-                  <Insets left="25.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Dodaj zadacu">
+
+            <Button fx:id="buttonDodajZadacu" mnemonicParsing="false" onAction="#actionDodajZadacu" prefHeight="25.0" prefWidth="96.0" text="Dodaj zadacu">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -63,8 +54,8 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="cbRazred" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="cbPredmet" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Izaberi razred:">
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -81,11 +72,6 @@
    <center>
       <TabPane BorderPane.alignment="CENTER">
          <tabs>
-            <Tab text="Zadace">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
             <Tab text="Ucenici">
                <content>
                   <GridPane hgap="10.0" vgap="20.0">
@@ -159,7 +145,7 @@
                         <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <TextField GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <ListView prefHeight="402.0" prefWidth="200.0" GridPane.rowSpan="6" />
+                        <ListView fx:id="listView" prefHeight="402.0" prefWidth="200.0" GridPane.rowSpan="6" />
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="206.0" text="Bodovi" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
