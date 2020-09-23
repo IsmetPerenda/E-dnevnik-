@@ -41,8 +41,8 @@ public class SkolaDAOBase implements SkolaDAO {
 
             dajRasporedUpit = connection.prepareStatement("select  * from Raspored");
             dajStudentaNaPredmetuUpit = connection.prepareStatement("select s.id,s.prezime,s.adresa,s.datum_rodjenja,s.opcina,s.email,s.lozinka,s.razred_id from Ucenik s,Raspored r,Predmeti p where s.id = r.ucenik_id and r.predmet_id = p.id and p.profesor_id=?");
-selektujUcenikeIzRazreda=connection.prepareStatement("select * from ucenik where razred_id=?");
-
+            selektujUcenikeIzRazreda=connection.prepareStatement("select * from ucenik where razred_id=?");
+            selektujUcenikeNaPredmetu = connection.prepareStatement(" select s.id,s.prezime,s.adresa,s.datum_rodjenja,s.opcina,s.email,s.lozinka,s.razred_id from Ucenik s, Raspored r where s.id =r.ucenik_id and r.predmet_id =?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -247,13 +247,53 @@ selektujUcenikeIzRazreda=connection.prepareStatement("select * from ucenik where
     public ObservableList<Student> getStudentsInSubjects(Professor professor) {
         ObservableList<Student> students = FXCollections.observableArrayList();
         try {
-            dajStudentaNaPredmetuUpit.setInt(1,professor.getId());
-                ResultSet x = dajStudentaNaPredmetuUpit.executeQuery();
+            selektujUcenikeNaPredmetu.setInt(1,professor.getId());
+                ResultSet x = selektujUcenikeNaPredmetu.executeQuery();
                 while (x.next()) {
                     Student k = new Student(x.getInt(1), x.getString(2), x.getString(3), x.getString(4),x.getDate(5).toLocalDate(), x.getString(6), x.getString(7), x.getString(8), pretraziRazred(x.getInt(9)));
                     students.add(k);
 
                 }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return students;
+    }
+
+    @Override
+    public ObservableList<Student> getStudentsFromClassroom(ClassRoom classroom) {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+        try {
+            selektujUcenikeIzRazreda.setInt(1,classroom.getId());
+            ResultSet x = selektujUcenikeIzRazreda.executeQuery();
+            while (x.next()) {
+                Student k = new Student(x.getInt(1), x.getString(2), x.getString(3), x.getString(4),x.getDate(5).toLocalDate(), x.getString(6), x.getString(7), x.getString(8), pretraziRazred(x.getInt(9)));
+                students.add(k);
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return students;
+    }
+
+    @Override
+    public ObservableList<Student> getStudentsOnSubject(Subject subject) {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+        try {
+            selektujUcenikeNaPredmetu.setInt(1,subject.getId());
+            ResultSet x = selektujUcenikeNaPredmetu.executeQuery();
+            while (x.next()) {
+                Student k = new Student(x.getInt(1), x.getString(2), x.getString(3), x.getString(4),x.getDate(5).toLocalDate(), x.getString(6), x.getString(7), x.getString(8), pretraziRazred(x.getInt(9)));
+                students.add(k);
+
+            }
 
 
         } catch (SQLException e) {

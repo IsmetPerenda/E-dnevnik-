@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -19,13 +16,14 @@ import java.util.ResourceBundle;
 public class professorController implements Initializable {
 
 
-    public ListView listView;
-    public ChoiceBox cbRazred;
-    public ChoiceBox cbPredmet;
+    public ListView<Student> listView;
+    public ChoiceBox<ClassRoom> cbRazred;
+    public ChoiceBox<Subject> cbPredmet;
     public TreeTableColumn cellUcenik;
     public TreeTableColumn cellZadaca;
     public TreeTableColumn cellBodovi;
     public Button btnPromjeniLozinku;
+    public TextField fldIme,fldPrezime,fldEmail;
     public Button btnOdjaviSe;
     private Professor p;
     SkolaDAO dao = new SkolaDAOBase();
@@ -49,20 +47,45 @@ public class professorController implements Initializable {
             stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
             stage.setResizable(true);
             stage.show();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+
         listView.setItems(dao.getStudentsInSubjects(p));
+        listView.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
+            if(newKorisnik==null){
+                fldIme.setText("");
+                fldPrezime.setText("");
+                fldEmail.setText("");
+
+
+            }else{
+                fldIme.setText(newKorisnik.getName());
+                fldPrezime.setText(newKorisnik.getSurname());
+                fldEmail.setText(newKorisnik.getEmail());
+            }
+        });
         cbPredmet.setItems(dao.getSubject(p));
         cbRazred.setItems(dao.getClassroom());
 
+        cbPredmet.getSelectionModel().selectedItemProperty().addListener((obs, old, neww) -> {
+
+             listView.setItems(dao.getStudentsOnSubject(neww));
+
+
+        });
+        cbRazred.getSelectionModel().selectedItemProperty().addListener((obs, old, neww) -> {
+          listView.setItems(dao.getStudentsFromClassroom(neww));
+
+        });
 
     }
 

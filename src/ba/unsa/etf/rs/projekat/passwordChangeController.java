@@ -33,100 +33,100 @@ public class passwordChangeController {
 
     public void actionPromjeniLozinku(ActionEvent actionEvent) {
 
-            boolean valid = true;
-            if(student != null){
+        boolean valid = true;
+        if(student != null){
 
-                if(!student.getPassword().equals(fldStari.getText())) {
-                    fldStari.getStyleClass().removeAll("poljeIspravno");
-                    fldStari.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldStari.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldStari.getStyleClass().add("poljeIspravno");
-                }
-                if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
-                    fldNovi.getStyleClass().removeAll("poljeIspravno");
-                    fldNovi.getStyleClass().add("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNovi.getStyleClass().add("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeIspravno");
-                }
-                if(valid){
+            if(!student.getPassword().equals(fldStari.getText())) {
+                fldStari.getStyleClass().removeAll("poljeIspravno");
+                fldStari.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldStari.getStyleClass().removeAll("poljeNijeIspravno");
+                fldStari.getStyleClass().add("poljeIspravno");
+            }
+            if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
+                fldNovi.getStyleClass().removeAll("poljeIspravno");
+                fldNovi.getStyleClass().add("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNovi.getStyleClass().add("poljeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeIspravno");
+            }
+            if(valid){
 
-                    student.setPassword(fldNovi.getText());
-                    d.changePassword(student);
-                    Stage change=(Stage)btnOK.getScene().getWindow();
-                    change.close();
-                }
-            }else if(professor != null){
+                student.setPassword(fldNovi.getText());
+                d.changePassword(student);
+                Stage change=(Stage)btnOK.getScene().getWindow();
+                change.close();
+            }
+        }else if(professor != null){
 
-                if(!professor.getPassword().equals(fldStari.getText())) {
-                    fldStari.getStyleClass().removeAll("poljeIspravno");
-                    fldStari.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldStari.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldStari.getStyleClass().add("poljeIspravno");
-                }
-                if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
-                    fldNovi.getStyleClass().removeAll("poljeIspravno");
-                    fldNovi.getStyleClass().add("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNovi.getStyleClass().add("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeIspravno");
-                }
-                if(valid){
+            if(!professor.getPassword().equals(fldStari.getText())) {
+                fldStari.getStyleClass().removeAll("poljeIspravno");
+                fldStari.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldStari.getStyleClass().removeAll("poljeNijeIspravno");
+                fldStari.getStyleClass().add("poljeIspravno");
+            }
+            if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
+                fldNovi.getStyleClass().removeAll("poljeIspravno");
+                fldNovi.getStyleClass().add("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNovi.getStyleClass().add("poljeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeIspravno");
+            }
+            if(valid){
 
-                    professor.setPassword(fldNovi.getText());
-                    d.changePassword(professor);
-                    Stage change=(Stage)btnOK.getScene().getWindow();
-                    change.close();
-                }
-            }else if(administrator != null){
-                if(!administrator.getPassword().equals(fldStari.getText())) {
-                    fldStari.getStyleClass().removeAll("poljeIspravno");
-                    fldStari.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldStari.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldStari.getStyleClass().add("poljeIspravno");
-                }
-                if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
-                    fldNovi.getStyleClass().removeAll("poljeIspravno");
-                    fldNovi.getStyleClass().add("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
-                    valid = false;
-                }else{
-                    fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNovi.getStyleClass().add("poljeIspravno");
-                    fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldNoviPonovo.getStyleClass().add("poljeIspravno");
-                }
-                if(valid){
+                professor.setPassword(fldNovi.getText());
+                d.changePassword(professor);
+                Stage change=(Stage)btnOK.getScene().getWindow();
+                change.close();
+            }
+        }else if(administrator != null){
+            if(!administrator.getPassword().equals(fldStari.getText())) {
+                fldStari.getStyleClass().removeAll("poljeIspravno");
+                fldStari.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldStari.getStyleClass().removeAll("poljeNijeIspravno");
+                fldStari.getStyleClass().add("poljeIspravno");
+            }
+            if(!fldNovi.getText().equals(fldNoviPonovo.getText()) || fldNoviPonovo.getText().isEmpty() || fldNoviPonovo.getText().isEmpty()) {
+                fldNovi.getStyleClass().removeAll("poljeIspravno");
+                fldNovi.getStyleClass().add("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeNijeIspravno");
+                valid = false;
+            }else{
+                fldNovi.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNovi.getStyleClass().add("poljeIspravno");
+                fldNoviPonovo.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNoviPonovo.getStyleClass().add("poljeIspravno");
+            }
+            if(valid){
 
-                    administrator.setPassword(fldNovi.getText());
-                    d.changePassword(administrator);
-                    Stage change=(Stage)btnOK.getScene().getWindow();
-                    change.close();
-                }
+                administrator.setPassword(fldNovi.getText());
+                d.changePassword(administrator);
+                Stage change=(Stage)btnOK.getScene().getWindow();
+                change.close();
             }
         }
+    }
 
-        public void actionCancel(ActionEvent actionEvent) {
-            Stage change=(Stage)btnCancel.getScene().getWindow();
-            change.close();
-        }
+    public void actionCancel(ActionEvent actionEvent) {
+        Stage change=(Stage)btnCancel.getScene().getWindow();
+        change.close();
+    }
 
 
 

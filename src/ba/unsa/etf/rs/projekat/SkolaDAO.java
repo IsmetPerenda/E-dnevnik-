@@ -14,6 +14,8 @@ public interface SkolaDAO {
     ObservableList<ClassRoom>getFreeClassRoom();
     ObservableList<Schedule>getSchedule();
     ObservableList<Student>getStudentsInSubjects(Professor professor);
+    ObservableList<Student>getStudentsFromClassroom(ClassRoom classroom);
+    ObservableList<Student>getStudentsOnSubject(Subject subject);
     void addStudents(Student student);
     void changeStudents(Student student);
     void deleteStudents(Student student);

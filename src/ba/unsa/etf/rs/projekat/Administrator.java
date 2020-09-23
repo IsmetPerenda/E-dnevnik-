@@ -22,7 +22,7 @@ public class Administrator {
     }
 
     public void setEmail(String email) {
-        this.email.set(email);
+        emailProperty().set(email);
     }
 
     public String getPassword() {
@@ -34,7 +34,7 @@ public class Administrator {
     }
 
     public void setPassword(String password) {
-        this.password.set(password);
+        passwordProperty().set(password);
     }
 
     public int getId() {
@@ -46,6 +46,6 @@ public class Administrator {
     }
 
     public void setId(int id) {
-        this.id.set(id);
+        idProperty().set(id);
     }
 }

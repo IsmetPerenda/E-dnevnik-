@@ -26,8 +26,9 @@ public class administratorController implements Initializable {
     public DatePicker dpDatum;
     public ChoiceBox<ClassRoom> cbRazred;
     public Button btnOdjaviSe;
+    public MenuItem menuSifra;
     SkolaDAO dao = new SkolaDAOBase();
-        Administrator admin;
+    Administrator admin;
 
     public administratorController(Administrator admin) {
         this.admin = admin;
@@ -35,29 +36,29 @@ public class administratorController implements Initializable {
 
     public void actionDodajRazred(ActionEvent actionEvent) {
 
-            Stage stage = new Stage();
-            Parent root = null;
-            try {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/razred.fxml"));
-                classRoomController razredcontroller = new classRoomController(null);
-                loader.setController(razredcontroller);
-                root = loader.load();
-                stage.setTitle("Razred");
-                stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
-                stage.setResizable(true);
-                stage.showAndWait();
-                if(classRoomController.razred == null)return;
-                else{
-                    dao.addClassroom(classRoomController.razred);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/razred.fxml"));
+            classRoomController razredcontroller = new classRoomController(null);
+            loader.setController(razredcontroller);
+            root = loader.load();
+            stage.setTitle("Razred");
+            stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.showAndWait();
+            if(classRoomController.razred == null)return;
+            else{
+                dao.addClassroom(classRoomController.razred);
 
-                    listViewAdmin2.setItems(dao.getClassroom());
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
+                listViewAdmin2.setItems(dao.getClassroom());
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -78,7 +79,7 @@ public class administratorController implements Initializable {
                 fldAdresa.setText(newKorisnik.getAdress());
                 fldEmail.setText(newKorisnik.getEmail());
                 fldOpcina.setText(newKorisnik.getMunicipality());
-    cbRazred.setValue(newKorisnik.getClassroomId());
+                cbRazred.setValue(newKorisnik.getClassroomId());
                 dpDatum.setValue(newKorisnik.getDateOfBirth());
             }
         });
@@ -348,6 +349,25 @@ public class administratorController implements Initializable {
             stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
             stage.setResizable(true);
             stage.showAndWait();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void promijeniSifru(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/promjenaLozinke.fxml"));
+            passwordChangeController razredcontroller = new passwordChangeController(admin,dao);
+            loader.setController(razredcontroller);
+            root = loader.load();
+            stage.setTitle("Promjena lozinke");
+            stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.showAndWait();
+
         }catch (IOException e) {
             e.printStackTrace();
         }

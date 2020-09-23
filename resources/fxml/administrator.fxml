@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="808.0" stylesheets="/css/validacija.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="808.0" stylesheets="/css/validacija.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <VBox prefHeight="36.0" prefWidth="808.0" BorderPane.alignment="CENTER">
             <children>
@@ -14,6 +14,11 @@
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem fx:id="menuSifra" mnemonicParsing="false" onAction="#promijeniSifru" text="Promijeni šifru" />
                             </items>
                         </Menu>
                     </menus>
@@ -62,11 +67,11 @@
                         <Insets left="230.0" />
                     </HBox.margin>
                 </GridPane>
-            <Button fx:id="btnOdjaviSe" mnemonicParsing="false" text="Odjavi se!" onAction="#actionOdjaviSe" stylesheets="/css/dugmad.css">
-               <HBox.margin>
-                  <Insets top="105.0" />
-               </HBox.margin>
-            </Button>
+                <Button fx:id="btnOdjaviSe" mnemonicParsing="false" onAction="#actionOdjaviSe" stylesheets="/css/dugmad.css" text="Odjavi se!">
+                    <HBox.margin>
+                        <Insets top="105.0" />
+                    </HBox.margin>
+                </Button>
             </children>
         </HBox>
     </bottom>

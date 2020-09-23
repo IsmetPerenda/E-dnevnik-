@@ -15,7 +15,7 @@ public class homeworkController implements Initializable {
     public TextField fldNaziv;
     public Spinner spinnerBodovi;
     public Button btnSpasi;
-    private Homework zadaca;
+    public Homework zadaca;
     SkolaDAO dao = new SkolaDAOBase();
     public homeworkController(Homework homework) {
         zadaca = homework;
@@ -23,21 +23,10 @@ public class homeworkController implements Initializable {
     }
 
     public void actionSave(ActionEvent actionEvent) {
-        boolean validno = true;
-        if(fldNaziv.getText().isEmpty()){
-            validno = false;
-            fldNaziv.getStyleClass().removeAll("poljeIspravno");
-            fldNaziv.getStyleClass().add("poljeNijeIspravno");
-        }else{
-            validno = true;
-            fldNaziv.getStyleClass().removeAll("poljeNijeIspravno");
-            fldNaziv.getStyleClass().add("poljeIspravno");
-        }
 
-        if(!validno)return;
-        zadaca = new Homework(1,fldNaziv.getText(),zadaca.getPredmetId(),(int)spinnerBodovi.getValue());
         Stage edit_add=(Stage)btnSpasi.getScene().getWindow();
         edit_add.close();
+
     }
 
     @Override

@@ -20,7 +20,7 @@ public class classRoomController implements Initializable {
     public Spinner spinnerGodina;
     SkolaDAO dao = new SkolaDAOBase();
     public classRoomController(ClassRoom classRoom) {
-        razred= classRoom;
+        razred = classRoom;
 
     }
 

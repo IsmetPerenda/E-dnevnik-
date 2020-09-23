@@ -8,16 +8,16 @@ public class ClassRoom {
 
 
 
-        SimpleIntegerProperty id,numberOfStudents,year;
-        SimpleStringProperty name;
+    SimpleIntegerProperty id,numberOfStudents,year;
+    SimpleStringProperty name;
 
 
-        public ClassRoom(int id, int numberOfStudents, String name,int year) {
-            this.id = new SimpleIntegerProperty(id);
-            this.numberOfStudents = new SimpleIntegerProperty(numberOfStudents);
-            this.name = new SimpleStringProperty(name);
-            this.year = new SimpleIntegerProperty(year);
-        }
+    public ClassRoom(int id, int numberOfStudents, String name,int year) {
+        this.id = new SimpleIntegerProperty(id);
+        this.numberOfStudents = new SimpleIntegerProperty(numberOfStudents);
+        this.name = new SimpleStringProperty(name);
+        this.year = new SimpleIntegerProperty(year);
+    }
 
     @Override
     public String toString() {
@@ -33,44 +33,45 @@ public class ClassRoom {
     }
 
     public void setYear(int year) {
-        this.year.set(year);
+        yearProperty().set(year);
     }
 
     public int getId() {
-            return id.get();
-        }
+        return id.get();
+    }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
 
-        public void setId(int id) {
-            this.id.set(id);
-        }
+    public void setId(int id) {
+        idProperty().set(id);
+    }
 
-        public int getNumberOfStudents() {
-            return numberOfStudents.get();
-        }
+    public int getNumberOfStudents() {
+        return numberOfStudents.get();
+    }
 
-        public SimpleIntegerProperty numberOfStudentsProperty() {
-            return numberOfStudents;
-        }
+    public SimpleIntegerProperty numberOfStudentsProperty() {
+        return numberOfStudents;
+    }
 
-        public void setNumberOfStudents(int numberOfStudents) {
-            this.numberOfStudents.set(numberOfStudents);
-        }
+    public void setNumberOfStudents(int numberOfStudents) {
+        if(numberOfStudents>30)throw new IllegalArgumentException("Ne možete imati preko 30 ucenika!");
+        numberOfStudentsProperty().set(numberOfStudents);
+    }
 
-        public String getName() {
-            return name.get();
-        }
+    public String getName() {
+        return name.get();
+    }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
 
-        public void setName(String name) {
-            this.name.set(name);
-        }
+    public void setName(String name) {
+        nameProperty().set(name);
+    }
 
 
 }

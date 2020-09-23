@@ -34,7 +34,7 @@ public class studentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-      //  cbUcenik.setItems(dao.getSubject());
+        //  cbUcenik.setItems(dao.getSubject());
     }
 
     public void actionPromjeniLozinku(ActionEvent actionEvent) {
@@ -52,8 +52,8 @@ public class studentController implements Initializable {
             stage.showAndWait();
 
         }catch (IOException e) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+        }
     }
 
     public void actionOdjaviSe(ActionEvent actionEvent) {
@@ -62,14 +62,14 @@ public class studentController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pocetna.fxml"));
-        homescreenController razredcontroller = new homescreenController();
-        loader.setController(razredcontroller);
-        root = loader.load();
-        stage.setTitle("Pocetna");
-        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
-        stage.setResizable(true);
-        stage.showAndWait();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pocetna.fxml"));
+            homescreenController razredcontroller = new homescreenController();
+            loader.setController(razredcontroller);
+            root = loader.load();
+            stage.setTitle("Pocetna");
+            stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.showAndWait();
         }catch (IOException e) {
             e.printStackTrace();
         }
